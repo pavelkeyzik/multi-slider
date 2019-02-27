@@ -12,6 +12,7 @@ export default class Track extends React.Component {
         strokeWidth={lineWidth}
         stroke={color}
         strokeLinecap="round"
+        className="ms-track"
       />
     );
   }

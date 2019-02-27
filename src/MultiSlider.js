@@ -155,6 +155,7 @@ export default class MultiSlider extends React.Component {
     var state = this.state;
     var down = state.down;
     var props = this.props;
+    var tooltipValues = props.tooltipValues;
     var width = props.width;
     var height = props.height;
     var values = props.values;
@@ -213,6 +214,8 @@ export default class MultiSlider extends React.Component {
             innerRadius={handleInnerDotSize}
             size={handleSize}
             events={handleEvents}
+            value={value}
+            tooltipValue={tooltipValues[i]}
           />
         );
       }

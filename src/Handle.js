@@ -21,6 +21,7 @@ export default class Handle extends React.Component {
     var state = this.state;
     var hover = state.hover;
     var props = this.props;
+    var tooltipValue = props.tooltipValue;
     var active = props.active;
     var x = props.x;
     var y = props.y;
@@ -44,8 +45,15 @@ export default class Handle extends React.Component {
     };
 
     return (
-      <g style={style} {...events}>
-        <circle key="1" cx={x} cy={y} r={size} fill={color} />
+      <g style={style} {...events} >
+        <circle
+          key="1"
+          cx={x}
+          cy={y}
+          r={size}
+          fill={color}
+          className="ms-handle__border"
+        />
         <circle
           key="2"
           opacity={active ? 0 : hover ? 0.8 : 1}
@@ -53,6 +61,7 @@ export default class Handle extends React.Component {
           cy={y}
           r={size - strokeWidth}
           fill={bg}
+          className="ms-handle__outer"
         />
         <circle
           key="3"
@@ -60,7 +69,19 @@ export default class Handle extends React.Component {
           cy={y}
           r={innerRadius}
           fill={active ? bg : color}
+          stroke={color}
+          className="ms-handle__inner"
         />
+        <text
+          key="4"
+          x={x}
+          y={y+10}
+          textAnchor="middle"
+          fontSize="4px"
+          className="ms-handle__tooltip"
+        >
+          {tooltipValue}
+        </text>
       </g>
     );
   }
