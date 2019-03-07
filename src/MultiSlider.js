@@ -13,6 +13,7 @@ export default class MultiSlider extends React.Component {
     colors: PropTypes.arrayOf(PropTypes.string),
     values: PropTypes.arrayOf(PropTypes.number),
     onChange: PropTypes.func,
+    onChangeEnd: PropTypes.func,
     width: PropTypes.number,
     height: PropTypes.number,
     padX: PropTypes.number,
@@ -138,10 +139,17 @@ export default class MultiSlider extends React.Component {
   };
   onHandleEnd = e => {
     var event = this.concernedEvent(e);
+    var values = this.props.values;
+
     if (!event) return;
     this.setState({
       down: null,
     });
+
+    const { onChangeEnd } = this.props;
+    if (onChangeEnd) {
+      onChangeEnd(values);
+    }
   };
   onHandleAbort = e => {
     var event = this.concernedEvent(e);
